@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Card */
+  .glass-card {
+    @apply bg-navy-800/60 backdrop-blur-md border border-cyber-cyan/10 rounded-xl;
+  }
+  
+  .glass-card-red {
+    @apply bg-navy-800/60 backdrop-blur-md border border-cyber-red/20 rounded-xl;
+  }
+  
+  .glass-card-green {
+    @apply bg-navy-800/60 backdrop-blur-md border border-cyber-green/20 rounded-xl;
+  }
+  
+  /* Neon Text Effects */
+  .neon-cyan {
+    color: #00F2FE;
+    text-shadow: 0 0 10px #00F2FE, 0 0 20px #00F2FE;
+  }
+  
+  .neon-red {
+    color: #FF3366;
+    text-shadow: 0 0 10px #FF3366, 0 0 20px #FF3366;
+  }
+  
+  .neon-green {
+    color: #00E676;
+    text-shadow: 0 0 10px #00E676, 0 0 20px #00E676;
+  }
+  
+  /* Glow Borders */
+  .border-glow-cyan {
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.15), inset 0 0 15px rgba(0, 242, 254, 0.05);
+  }
+  
+  .border-glow-red {
+    box-shadow: 0 0 15px rgba(255, 51, 102, 0.2), inset 0 0 15px rgba(255, 51, 102, 0.05);
+  }
+  
+  .border-glow-green {
+    box-shadow: 0 0 15px rgba(0, 230, 118, 0.15), inset 0 0 15px rgba(0, 230, 118, 0.05);
+  }
+  
+  /* Attack Node Graph */
+  .node-agent {
+    @apply bg-blue-600/20 border-2 border-blue-400 rounded-full flex items-center justify-center;
+    box-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
+  }
+  
+  .node-aegis {
+    @apply bg-cyber-cyan/10 border-2 border-cyber-cyan rounded-lg flex items-center justify-center;
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.3);
+  }
+  
+  .node-api {
+    @apply bg-emerald-600/20 border-2 border-emerald-400 rounded-full flex items-center justify-center;
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.4);
+  }
+  
+  .node-blocked {
+    @apply bg-cyber-red/20 border-2 border-cyber-red rounded-full flex items-center justify-center;
+    animation: pulseRed 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    box-shadow: 0 0 30px rgba(255, 51, 102, 0.6);
+  }
+
+  /* Toggle Switch */
+  .toggle-track {
+    @apply relative inline-flex h-6 w-11 items-center rounded-full transition-colors cursor-pointer;
+  }
+  
+  .toggle-thumb {
+    @apply inline-block h-4 w-4 transform rounded-full bg-white transition-transform;
+  }
+  
+  /* Scan Line Effect */
+  .scan-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00F2FE33, #00F2FE, #00F2FE33, transparent);
+    z-index: 9999;
+    pointer-events: none;
+    animation: scan 4s linear infinite;
+  }
+}
+
+@layer utilities {
+  .text-gradient-cyan {
+    background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-gradient-red {
+    background: linear-gradient(135deg, #FF3366 0%, #FF6B9D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .bg-gradient-navy {
+    background: linear-gradient(135deg, #0B0F19 0%, #0D1321 50%, #111827 100%);
+  }
+  
+  .bg-grid {
+    background-image: 
+      linear-gradient(rgba(0, 242, 254, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+/* Custom animations */
+@keyframes pulseRed {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 51, 102, 0.6); }
+  50% { box-shadow: 0 0 50px rgba(255, 51, 102, 0.9), 0 0 100px rgba(255, 51, 102, 0.4); }
+}
+
+@keyframes scan {
+  0% { top: -2px; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100vh; opacity: 0; }
+}
+
+@keyframes dataStream {
+  0% { opacity: 0; transform: translateX(-20px); }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(20px); }
+}
+
+@keyframes nodeConnect {
+  0% { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* Terminal text effect */
+.terminal-text {
+  font-family: 'JetBrains Mono', monospace;
+  color: #00E676;
+}
+
+/* Loading shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #1a2235 25%, #1e2a40 50%, #1a2235 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
